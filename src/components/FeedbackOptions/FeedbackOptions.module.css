@@ -1,0 +1,8 @@
+.options {
+  display: flex;
+  gap: 5px;
+}
+
+.btn {
+  cursor: pointer;
+}
