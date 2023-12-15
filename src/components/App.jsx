@@ -6,14 +6,17 @@ import { Notification } from './Notification/Notification';
 
 export function App() {
   const [feedback, setFeedback] = useState({ good: 0, neutral: 0, bad: 0 });
-
-  console.log(feedback);
+  const { good, neutral, bad } = feedback;
 
   const handleClick = evt => {
     const optionName = evt.currentTarget.dataset.name;
     setFeedback(prevState => {
-      return {
+      const updatedFeedback = {
         [optionName]: Number(prevState[optionName]) + 1,
+      };
+      return {
+        ...prevState,
+        ...updatedFeedback,
       };
     });
   };
@@ -25,10 +28,9 @@ export function App() {
   };
 
   const countPositiveFeedbackPercentage = () => {
-    return Math.round((feedback.good / countTotalFeedback()) * 100);
+    return Math.round((good / countTotalFeedback()) * 100);
   };
 
-  const { good, neutral, bad } = feedback;
   return (
     <>
       <Section title="Please leave feadback">
